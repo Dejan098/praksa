@@ -34,7 +34,7 @@ select
 
 from {{ source('imported_data', 'athletes') }}
 
-inner join medals 
+left join medals 
  on athletes.name=medals.athlete_name
  and athletes.country = medals.country
  and athletes.gender=medals.athlete_sex
