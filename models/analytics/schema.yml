@@ -1,6 +1,17 @@
 
 version: 2
-
+models:
+  - name: athletes
+    columns:
+      - name: gold_medal_count
+        tests:
+          - not_null
+      - name: silver_medal_count
+        tests:
+          - not_null
+      - name: bronze_medal_count
+        tests:
+          - not_null
 
 sources:
   - name: imported_data
