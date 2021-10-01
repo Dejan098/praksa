@@ -1,0 +1,13 @@
+
+version: 2
+
+
+sources:
+  - name: imported_data
+    schema: imported_data
+    tables:
+      - name: athletes
+      - name: coaches
+      - name: medals
+      - name: medals_total
+      - name: techincal_officials
