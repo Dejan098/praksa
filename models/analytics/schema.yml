@@ -12,7 +12,12 @@ models:
       - name: bronze_medal_count
         tests:
           - not_null
-
+  - name: medals
+    columns:
+      - name: medal_type
+        tests:
+          - accepted_values:
+              values: ['Gold Medal', 'Silver Medal', 'Bronze Medal']
 sources:
   - name: imported_data
     schema: imported_data

@@ -2,14 +2,14 @@ with medals as (
 	select
            athlete_name as athlete_name,
 	   country,
-           athlete_sex,
            discipline,
            sum(case when medal_type = 'Gold Medal' then 1 else 0 end) as gold_medal_count,
            sum(case when medal_type = 'Silver Medal' then 1 else 0 end) as silver_medal_count,
-           sum(case when medal_type = 'Bronze Medal' then 1 else 0 end) as bronze_medal_count
+           sum(case when medal_type = 'Bronze Medal' then 1 else 0 end) as bronze_medal_count,
+           count(*) as medal_count
 	from {{ source('imported_data', 'medals') }}
 	 
-	group by athlete_name,country,athlete_sex,discipline
+	group by athlete_name,country,discipline
 
 
 )
@@ -30,14 +30,13 @@ select
   coalesce(medals.gold_medal_count,0) as gold_medal_count,
   coalesce(medals.silver_medal_count,0) as silver_medal_count,
   coalesce(medals.bronze_medal_count,0) as bronze_medal_count,
-  sum(medals.gold_medal_count+medals.silver_medal_count+medals.bronze_medal_count) as medal_count_total
+  coalesce(medals.medal_count,0) as medal_count
+  
 
 from {{ source('imported_data', 'athletes') }}
 
 left join medals 
  on athletes.name=medals.athlete_name
  and athletes.country = medals.country
- and athletes.gender=medals.athlete_sex
  and athletes.discipline=medals.discipline
-group by athletes.name,athletes.gender,athletes.birth_date,athletes.birth_place,athletes.birth_country,athletes.country,athletes.discipline,athletes.residence_place,athletes."height_m/ft",medals.gold_medal_count,medals.silver_medal_count,medals.bronze_medal_count
 
