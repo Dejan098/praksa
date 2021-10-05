@@ -7,7 +7,7 @@ select
     when 'M' then 'Male'
     when 'W' then 'Female'	
   end as athlete_gender,
-  country,
+  country as athlete_country,
   discipline,
   event
   

@@ -14,7 +14,7 @@ models:
           - not_null
   - name: medals
     columns:
-      - name: medal_type
+      - name: type
         tests:
           - accepted_values:
               values: ['Gold Medal', 'Silver Medal', 'Bronze Medal']
