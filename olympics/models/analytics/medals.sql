@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 select
   medal_type as type,
   medal_date as won_on_date,
@@ -7,7 +8,7 @@ select
     when 'M' then 'Male'
     when 'W' then 'Female'	
   end as athlete_gender,
-  country as athlete_country,
+  country,
   discipline,
   event
   
