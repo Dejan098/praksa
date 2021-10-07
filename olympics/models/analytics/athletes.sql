@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 with medals as (
 	select
            athlete_name as athlete_name,
