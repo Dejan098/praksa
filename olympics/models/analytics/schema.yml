@@ -27,3 +27,4 @@ sources:
       - name: medals
       - name: medals_total
       - name: techincal_officials
+      - name: titanic
